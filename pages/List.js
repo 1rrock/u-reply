@@ -19,7 +19,7 @@ const ListScreen = ({ navigation, route }) => {
     const cameraRef = useRef(null);
     // const [permission, requestPermission] = Camera.useCameraPermissions();
     // const [microPhonePermission, requestMicrophonePermission] = Camera.useMicrophonePermissions();
-
+    CameraType.front
     const [isRecord, setIsRecord] = useState(false);
 
     const onClickYoutube = () => {
@@ -64,17 +64,38 @@ const ListScreen = ({ navigation, route }) => {
                 }
             };
 
-            const data = await cameraRef.current.recordAsync();
-            const splitedUri = data.uri.split('/');
-            splitedUri.pop();
-            splitedUri.push(`${timestamp().replace(' ', '-')}.mp4`);
-            const newUri = splitedUri.join('/');
+            const saveAlbum = async uri => {
+                try {
+                    console.log(uri)
+                    const asset = await MediaLibrary.createAssetAsync(uri);
+                    console.log(asset)
+                    const { status } = await MediaLibrary.requestPermissionsAsync();
+                    if(status === "granted") {
+                        console.log(`저장시작`)
+                        await MediaLibrary.createAlbumAsync('UReply', asset, false);
 
-            await FileSystem.moveAsync({
-                from: data.uri,
-                to: newUri
-            })
-            save(newUri)
+                        console.log("video successfully saved");
+                    }
+                } catch (error) {
+                    console.log(`앨범저장안됨 ${error}`)
+                }
+
+                Alert.alert(`${uri.split('/').pop()}으로 저장되었습니다.`)
+                setIsRecord(false);
+            }
+
+            const data = await cameraRef.current.recordAsync();
+            // const splitedUri = data.uri.split('/');
+            // splitedUri.pop();
+            // splitedUri.push(`${timestamp().replace(' ', '-')}.mp4`);
+            // const newUri = splitedUri.join('/');
+
+            // await FileSystem.moveAsync({
+            //     from: data.uri,
+            //     to: newUri
+            // })
+            await saveAlbum(data.uri);
+            // await save(data.uri)
         } else {
             cameraRef.current.stopRecording();
         }
@@ -150,7 +171,7 @@ const ListScreen = ({ navigation, route }) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Camera ref={cameraRef} style={isRecord ? styles.cameraRecording : styles.camera} type={CameraType.back} />
+                    <Camera ref={cameraRef} style={isRecord ? styles.cameraRecording : styles.camera} type={CameraType.front} />
                 </View>
             </SafeAreaView>
         </SafeAreaProvider>

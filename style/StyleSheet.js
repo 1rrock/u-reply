@@ -35,46 +35,46 @@ const styles = StyleSheet.create({
     },
     cameraRecording: {
         position: 'absolute',
-        right: 0,
-        top: 0,
+        right: 10,
+        top: 10,
         width: 300,
         height: 200,
         opacity: 1
     },
     camera: {
         position: 'absolute',
-        right: 0,
-        top: 0,
+        right: 10,
+        top: 10,
         width: 300,
         height: 200,
         opacity: 0
     },
     saveText: {
         textAlign: 'center',
-        fontSize: 40,
+        fontSize: 25,
         color: colors.white
     },
     save: {
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        height: 95,
+        height: 60,
         backgroundColor: colors.mainColor,
         borderRadius: 50,
     },
     textInputWrap: {
         display: 'flex',
-        gap: 20,
+        gap: 15,
         marginBottom: 40
     },
     textInputTitle: {
-        fontSize: 40,
+        fontSize: 25,
         color: colors.fontColor
     },
     linkFileBtn: {
         position: 'absolute',
         right: 20,
-        top: 70,
+        top: 55,
         width: 39,
         height: 28,
         zIndex: 100
@@ -87,16 +87,19 @@ const styles = StyleSheet.create({
         height: 65,
         padding: 15,
         flex: 1,
-        paddingRight: 80
+        paddingRight: 80,
+        marginTop:5
     },
     textInput: {
         display: 'flex',
         justifyContent: 'center',
         borderWidth: 1,
         borderColor: colors.fontColor,
-        height: 65,
+        height: 60,
         padding: 15,
-        flex: 1
+        flex: 1,
+        marginTop: 5
+
     },
     bg: {
         width: '40%',

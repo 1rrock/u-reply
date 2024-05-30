@@ -129,10 +129,6 @@ const Register = ({ navigation }) => {
                                 </View>
                                 <View style={{ position: 'relative' }}>
                                     <Text style={styles.textInputTitle}>문서 Link</Text>
-                                    {/* <TextInput style={styles.textInput} onChangeText={setPdf} value={pdf}></TextInput> */}
-                                    {/* <View style={styles.textInput} onPress={onClickAddPdf}>
-                                <Text numberOfLines={1} ellipsizeMode='middle'>{pdf}</Text>
-                            </View> */}
                                     <TextInput ref={pdfRef} style={styles.pdfTextInput} onChangeText={setPdf} value={pdf}></TextInput>
                                     <TouchableOpacity style={styles.linkFileBtn} onPress={onClickAddPdf}>
                                         <Svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="39.248" height="28.584" viewBox="0 0 39.248 28.584">
